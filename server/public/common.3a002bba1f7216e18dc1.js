@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[0],{U5wt:function(n,t,i){"use strict";i.d(t,"a",function(){return a});var o=i("zwRQ"),s=i("N7vg"),a=function(){return function(){this.estudiante=new o.a,this.curso=new s.a,this.nota_i="",this.nota_ii="",this.comentario="",this.horario=""}}()}}]);

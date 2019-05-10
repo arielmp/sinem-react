@@ -1,0 +1,29 @@
+.tablaHorario{
+	align-self: center;
+	border: solid;
+}
+
+.tablaHorario th {
+	width: 100px;
+	border: solid;
+	background-color: gray;
+	text-align: center;
+	color: black;
+}
+.tablaHorario td{
+	text-align: center;
+	border: solid;
+	color:black;
+}
+.seleccionado{
+	background-color: yellow;
+}
+
+.centrarTabla{
+	text-align: center;
+}
+
+.centrarTabla table {
+       margin: 0 auto;
+       text-align: left;
+}

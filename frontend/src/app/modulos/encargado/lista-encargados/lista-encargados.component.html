@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>Encargados</h1>
+  <div class="my-3">
+    <div class="row">
+      <div class="col md-8">
+        <a class="btn btn-primary" routerLink="./crear">Nuevo</a>
+      </div>
+      <div class="col md-4">
+        <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+          placeholder="Buscar Encargado..." title="Nombre del Encargado">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 my-4 table-list-scroll-y">
+      <table id="lista" class="table table-sm table-hover">
+        <tr>
+          <th class="thOrdenar">Nombre</th>
+          <th class="thOrdenar">Cedula</th>
+          <th class="thOrdenar">Teléfono Movil</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let encargado of objEncargados">
+          <td>{{encargado.nombre}}</td>
+          <td>{{encargado.cedula}}</td>
+          <td>{{encargado.telefono_movil}}</td>
+          <td>
+            <a [routerLink]="['./ver', encargado._id]"><i class="material-icons">search</i></a>
+            <a [routerLink]="['./editar', encargado._id]"><i class="material-icons">edit</i></a>
+            <a (click)="eliminarEncargado(encargado)" style="cursor: pointer;"><i class="material-icons">delete</i></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>

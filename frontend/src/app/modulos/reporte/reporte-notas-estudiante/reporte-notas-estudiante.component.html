@@ -1,0 +1,30 @@
+<div id="content" #content class="container">
+
+    <div id="reporteNotas" class="row">
+      <div *ngIf="objEstudiante" id="Reporte" class="col-md-8">
+        <h2>{{objEstudiante.nombre}}</h2>
+        <h3>{{objEstudiante.instrumento_principal.nombre}}</h3>
+        <div *ngIf="objNotas">
+          <div class="my-4 card" *ngFor="let nota of objNotas">
+            <div class="card-body">
+              <p>Curso: <strong>{{nota.curso.nombre}}</strong></p>
+              <p>Profesor: {{nota.curso.profesor.nombre}}</p>
+              <p>Nota I Semestre: {{nota.nota_i}}</p>
+              <p>Nota I Estado: {{formatoNota(nota.nota_i)}}</p>
+              <p>Nota II Semestre: {{nota.nota_ii}}</p>
+              <p>Nota II Estado: {{formatoNota(nota.nota_ii)}}</p>
+              <p>Promedio: {{promedioNota(nota.nota_i,nota.nota_ii)}}</p>
+              <p>Estado Promedio: {{formatoNota(promedioNota(nota.nota_i,nota.nota_ii))}}</p>
+              <p>Comentario: {{nota.comentario}}</p>
+            </div>
+          </div>
+          <p>PROMEDIO TOTAL: <strong>{{calcularPromedioTotal()}}</strong></p>
+          <p>ESTADO: <strong>{{formatoNota(calcularPromedioTotal())}}</strong></p>
+        </div>
+      </div>
+    </div>
+    <div id="botones" class="my-4">
+      <button class="btn btn-primary mr-4" (click)="exportar()">Descargar PDF</button>
+      <button class="btn btn-primary" (click)="regresar()">Regresar</button>
+    </div>
+  </div>

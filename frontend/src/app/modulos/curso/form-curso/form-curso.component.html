@@ -1,0 +1,82 @@
+<div class="my-3">
+  <a class="btn btn-primary" routerLink="/cursos">Regresar</a>
+</div>
+<h4>{{titulo}}</h4>
+<div class="row">
+  <div class="col-md-7 my-4">    
+    <form #form="ngForm" class="card" (ngSubmit)="SubmitForm()">
+      <div class="card-body">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="objCurso.nombre" #nombre='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="nombre.invalid && nombre.touched" class="text-danger small">
+            <div *ngIf="nombre.errors.required">
+              Nombre requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <select name="tipo" class="form-control" [(ngModel)]="objCurso.tipo" [disabled]="tipoForm=='ver'">
+            <option value="Instrumento">Instrumento</option>
+            <option value="Lenguaje">Lenguaje</option>
+            <option value="Ensamble">Ensamble</option>
+            <option value="Orquesta">Orquesta</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="profesor">Profesor</label>
+          <select name="profesor" class="form-control" [disabled]="tipoForm=='ver'" [(ngModel)]="objCurso.profesor" #profesor='ngModel'>
+            <option *ngFor="let pro of objProfesores" [ngValue]="pro">
+              {{ pro.nombre }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha">Año</label>
+          <input type="text" class="form-control" name="fecha" [(ngModel)]="objCurso.fecha" #fecha='ngModel' [disabled]="tipoForm=='ver'"
+            required>
+          <div *ngIf="fecha.invalid && fecha.touched" class="text-danger small">
+            <div *ngIf="fecha.errors.required">
+              Fecha requerida
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="horario">Horario</label>
+          <input type="text" class="form-control" name="horario" [(ngModel)]="objCurso.horario" #horario='ngModel' [disabled]="tipoForm=='ver'"
+            required>
+          <div *ngIf="horario.invalid && horario.touched" class="text-danger small">
+            <div *ngIf="horario.errors.required">
+              Horario requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select name="estado" class="form-control" [(ngModel)]="objCurso.estado" [disabled]="tipoForm=='ver'">
+            <option value="Activo">Activo</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="Cerrado">Cerrado</option>
+            <option value="Cancelado">Cancelado</option>
+          </select>
+        </div>
+
+        <div>
+          <button class="btn btn-primary" [disabled]="habilitarBoton(!form.valid)">{{nombreBoton}}</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5"> <!--Componente elegir estudiantes-->
+    <app-seleccionar-estudiantes [tipoForm]="tipoForm" (CambiarListaEvent)="obtenerEstudiantesSeleccionados($event)"></app-seleccionar-estudiantes>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+<div class="my-3">
+  <a class="btn btn-primary" routerLink="/profesores">Regresar</a>
+</div>
+<div class="row">
+  <div class="col-md-7 my-4">
+    <h4>{{titulo}}</h4>
+    <form #form="ngForm" class="card" (ngSubmit)="SubmitForm()">
+      <div class="card-body">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="objProfesor.nombre" #nombre='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="nombre.invalid && nombre.touched" class="text-danger small">
+            <div *ngIf="nombre.errors.required">
+              Nombre requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cedula">Cédula</label>
+          <input type="text" class="form-control" name="cedula" [(ngModel)]="objProfesor.cedula" #cedula='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="cedula.invalid && cedula.touched" class="text-danger small">
+            <div *ngIf="cedula.errors.required">
+              Cédula requerida
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="fecha_nacimiento">Fecha de nacimiento</label>
+          <input type="date" class="form-control" name="fecha_nacimiento" [(ngModel)]="objProfesor.fecha_nacimiento"
+            #fecha_nacimiento='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="fecha_nacimiento.invalid && fecha_nacimiento.touched" class="text-danger small">
+            <div *ngIf="fecha_nacimiento.errors.required">
+              Fecha de nacimiento requerida
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono_fijo">Teléfono Fijo</label>
+          <input type="text" class="form-control" name="telefono_fijo" [(ngModel)]="objProfesor.telefono_fijo"
+            #telefono_fijo='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="telefono_fijo.invalid && telefono_fijo.touched" class="text-danger small">
+            <div *ngIf="telefono_fijo.errors.required">
+              Teléfono fijo requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono_movil">Teléfono Móvil</label>
+          <input type="text" class="form-control" name="telefono_movil" [(ngModel)]="objProfesor.telefono_movil"
+            #telefono_movil='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="telefono_movil.invalid && telefono_movil.touched" class="text-danger small">
+            <div *ngIf="telefono_movil.errors.required">
+              Teléfono móvil requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="objProfesor.email" #email='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="email.invalid && email.touched" class="text-danger small">
+            <div *ngIf="email.errors.required">
+              Correo electrónico requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input type="text" class="form-control" name="direccion" [(ngModel)]="objProfesor.direccion" #direccion='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="direccion.invalid && direccion.touched" class="text-danger small">
+            <div *ngIf="direccion.errors.required">
+              Dirección requerida
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <select name="tipo" class="form-control" [(ngModel)]="objProfesor.tipo" [disabled]="tipoForm=='ver'">
+            <option value="sinem">SINEM</option>
+            <option value="fundacion">Fundación</option>
+          </select>
+        </div>     
+        
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select name="estado" class="form-control" [(ngModel)]="objProfesor.estado" [disabled]="tipoForm=='ver'">
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div> 
+
+        <div>
+          <button class="btn btn-primary" [disabled]="habilitarBoton(!form.valid)">{{nombreBoton}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5 my-4">
+      <app-seleccionar-instrumentos [tipoForm]="tipoForm" (CambiarListaEvent)="obtenerInstrumentosSeleccionados($event)"></app-seleccionar-instrumentos>      
+      <app-seleccionar-horario (CambiarHorarioEvent)="obtenerHorarioSeleccionado($event)"></app-seleccionar-horario>
+  </div>
+</div>

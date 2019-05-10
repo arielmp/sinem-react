@@ -1,0 +1,40 @@
+<div class="my-3">
+  <a class="btn btn-primary" routerLink="/instrumentos">Regresar</a>
+</div>
+<div class="row">
+  <div class="col-md-8 my-4">
+    <h4>{{titulo}}</h4>
+    <form #form="ngForm" class="card" (ngSubmit)="SubmitForm()">
+
+      <div class="card-body">
+        <div class="form-group">
+          <label for="nombre">Nombre del instrumento</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="objInstrumento.nombre" #nombre='ngModel'
+            [disabled]="tipoForm=='ver'" required minlength="4">
+          <div *ngIf="nombre.invalid && nombre.touched" class="text-danger small">
+            <div *ngIf="nombre.errors.required">
+              Nombre requerido
+            </div>
+            <div *ngIf="nombre.errors.minlength">
+              Nombre mayor a 4 letras
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="familia">Familia del instrumento</label>
+          <select name="familia" class="form-control" [(ngModel)]="objInstrumento.familia" [disabled]="tipoForm=='ver'">
+            <option value="cuerdas">Cuerdas</option>
+            <option value="madera">Vientos Madera</option>
+            <option value="metales">Vientos Metales</option>
+            <option value="percusion">Percusión</option>
+          </select>          
+        </div>
+
+        <div>
+          <button class="btn btn-primary" [disabled]="habilitarBoton(!form.valid)">{{nombreBoton}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

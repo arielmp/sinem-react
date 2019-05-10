@@ -1,0 +1,91 @@
+<div class="container">
+  <div *ngIf="tipoForm!='ver'">
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+      Agregar Encargado
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Encargados</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div>
+              <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+                placeholder="Buscar Encargado..." title="Nombre del Encargado">
+            </div>
+            <div class="my-4 modal-table-list-scroll-y">
+              <table id="lista" class="table table-sm">
+                <tr>
+                  <th>Encargado</th>
+                  <th>Cédula</th>
+                </tr>
+                <tr *ngFor="let enc of objEncargados" (click)="agregar(enc)">
+                  <td>{{enc.nombre}}</td>
+                  <td>{{enc.cedula}}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-sm">
+    <tr>
+      <th>Encargados</th>
+      <th></th>      
+    </tr>
+    <tr *ngFor="let enc of objEncargadosSeleccionados">
+      <td>{{enc.nombre}}</td>
+      <td>
+        <i data-toggle="modal" data-target="#verModal" (click)="verEncargado(enc)" class="material-icons">search</i>
+        <i (click)="quitar(enc)" class="material-icons">remove_circle</i>
+      </td>      
+            
+    </tr>
+  </table>
+
+  <div class="modal fade" id="verModal" tabindex="-1" role="dialog" aria-labelledby="verModal Title"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Encargado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p>Nombre: <strong>{{objVerEncargado.nombre}}</strong></p>
+        <p>Cédula: <strong>{{objVerEncargado.cedula}}</strong></p>
+        <p>Estado Civil: <strong>{{objVerEncargado.estado_civil}}</strong></p>
+        <p>Teléfono Fijo: <strong>{{objVerEncargado.telefono_fijo}}</strong></p>
+        <p>Teléfono Movil: <strong>{{objVerEncargado.telefono_movil}}</strong></p>
+        <p>Correo Electrónico: <strong>{{objVerEncargado.email}}</strong></p>
+        <p>Oficio: <strong>{{objVerEncargado.oficio}}</strong></p>
+        <p>Lugar de Trabajo: <strong>{{objVerEncargado.lugar_trabajo}}</strong></p>
+        <p>Teléfono de Trabajo: <strong>{{objVerEncargado.telefono_trabajo}}</strong></p>
+        <p>Dirección de Trabajo: <strong>{{objVerEncargado.direccion_trabajo}}</strong></p>       
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

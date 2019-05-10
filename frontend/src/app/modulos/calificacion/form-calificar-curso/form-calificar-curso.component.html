@@ -1,0 +1,72 @@
+<div id="calificacion" class="container">
+
+  <h2>Calificar Curso: {{objCurso.nombre}}</h2>
+  <p>Tipo: <strong>{{objCurso.tipo}}</strong> </p>
+  <p>Horario: <strong>{{objCurso.horario}}</strong>  Año: <strong>{{objCurso.fecha}}</strong> </p>
+  <p>Profesor: <strong>{{objCurso.profesor.nombre}}</strong></p>
+
+  <section id="formulario">
+    <div *ngIf="this.objNotas.length > 0 && tipoForm=='calificar'" class="row">
+      <div class="col-md-8">
+        <h4>Estudiante {{indiceActual+1}} de {{objNotas.length}}</h4>
+        <form #form="ngForm" class="card" (ngSubmit)="guardarNota()">
+          <div class="card-body">
+            <div class="form-group">
+              <h4>{{objNotaActual.estudiante.nombre}}</h4>
+
+              <div class="form-group">
+                <label for="nota_i">Nota I Semestre</label>
+                <input type="text" class="form-control" name="nota_i" [(ngModel)]="objNotaActual.nota_i" #nota_i='ngModel'>
+              </div>
+
+              <div class="form-group">
+                <label for="nota_ii">Nota II Semestre</label>
+                <input type="text" class="form-control" name="nota_ii" [(ngModel)]="objNotaActual.nota_ii" #nota_ii='ngModel'>
+              </div>
+
+              <div class="form-group">
+                <label for="comentario">Comentario</label>
+                <textarea name="comentario" class="form-control" [(ngModel)]="objNotaActual.comentario" id="comentario"
+                  cols="30" rows="4"></textarea>
+              </div>
+
+              <button class="btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-secondary" (click)="anteriorNota()">Anterior</button>
+        <button class="btn btn-secondary ml-2" (click)="siguienteNota()">Siguiente</button>
+        <div id="MensajeGuardado" style="display: none" class="my-4 alert alert-success" role="alert">
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="row my-4">
+    <div class="col-md-10">
+      <div class="my-4">
+        <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+          placeholder="Buscar Estudiante..." title="Nombre del Estudiante">
+      </div>
+      <table id="lista" class="table table-sm table-striped table-hover">
+        <tr>
+          <th>Estudiante</th>
+          <th>I Nota</th>
+          <th>II Nota</th>
+          <th *ngIf="tipoForm=='ver'">Comentario</th>
+        </tr>
+        <tr *ngFor="let nota of objNotas">
+          <td>{{nota.estudiante.nombre}}</td>
+          <td>{{nota.nota_i}}</td>
+          <td>{{nota.nota_ii}}</td>
+          <td *ngIf="tipoForm=='calificar'"><a (click)="seleccionarNota(nota)" class="btn btn-secondary">Seleccionar</a></td>
+          <td *ngIf="tipoForm=='ver'">{{nota.comentario}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+</div>

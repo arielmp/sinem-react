@@ -1,0 +1,36 @@
+<div class="container">
+  <h1>Calificar Cursos</h1>
+  <div class="my-3">
+    <div class="row">
+      <div class="col md-8">
+        
+      </div>
+      <div class="col md-4">
+        <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+          placeholder="Buscar Curso..." title="Nombre del Curso">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 my-4 table-list-scroll-y">
+      <table id="lista" class="table table-sm table-hover">
+        <tr>
+          <th class="thOrdenar">Nombre</th>          
+          <th class="thOrdenar">Horario</th>
+          <th class="thOrdenar">Profesor</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let curso of objCursos">
+          <td>{{curso.nombre}}</td>
+          <td>{{curso.horario}}</td>
+          <td>{{curso.profesor.nombre}}</td>
+          <td>
+            <a [routerLink]="['./ver', curso._id]"><i class="material-icons">search</i></a>            
+            <a [routerLink]="[curso._id]"><i class="material-icons">beenhere</i></a>            
+          </td>
+        </tr>
+      </table>      
+    </div>
+  </div>
+</div>

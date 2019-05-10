@@ -1,0 +1,106 @@
+<div class="container">
+  <h1>Matrícula</h1>
+  <!--SELECCIONAR ESTUDIANTE-->
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Seleccionar Estudiante
+  </button>
+  <div *ngIf="objEstudianteSeleccionado">
+    <h2>Estudiante: <strong>{{objEstudianteSeleccionado.nombre}}</strong></h2>
+    <h2>Instrumento:{{objEstudianteSeleccionado.instrumento_principal.nombre}}</h2>
+  </div>
+  <div class="row">
+    <div class="col-md-10 my-4">
+      <form #form="ngForm" (ngSubmit)="SubmitForm(form)">
+        <div class="card">
+          <div class="card-body ">
+            <h5 class="card-title">Curso Instrumento</h5>
+            <div class="form-group">
+              <label for="instrumento">Profesor</label>
+              <select name="instrumento" class="form-control" [(ngModel)]="objNotaInstrumento.curso" #instrumento='ngModel'>
+                <option *ngFor="let curso of objCursosInstrumento" [ngValue]="curso">
+                  {{ curso.profesor.nombre }}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="horario">Horario</label>
+              <input type="text" class="form-control" name="horario" [(ngModel)]="objNotaInstrumento.horario" #horario='ngModel'>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <div class="card-body">
+            <h5 class="card-title">Curso Lenguaje</h5>
+            <div class="form-group">
+              <label for="lenguaje">Curso</label>
+              <select name="lenguaje" class="form-control" [(ngModel)]="objNotaLenguaje.curso" #lenguaje='ngModel'>
+                <option *ngFor="let curso of objCursosLenguaje" [ngValue]="curso">
+                  {{ curso.nombre }} - {{curso.profesor.nombre}} - {{curso.horario}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="card my-4">
+          <div class="card-body my-4">
+            <h5 class="card-title">Orquesta</h5>
+            <div class="form-group">
+              <label for="orquesta">Orquesta</label>
+              <select name="orquesta" class="form-control" [(ngModel)]="objNotaOrquesta.curso" #orquesta='ngModel'>
+                <option *ngFor="let curso of objCursosOrquesta" [ngValue]="curso">
+                  {{ curso.nombre }} - {{curso.profesor.nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>     
+
+        <div class="my-4" id="optativos">
+          <a class="btn btn-secondary" (click)="agregarOptativo()">Agregar Curso optativo</a>
+        </div>
+
+        <div>
+          <button class="btn btn-primary" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Estudiantes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+          <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+            placeholder="Buscar Instrumento..." title="Nombre del Estudiante">
+        </div>
+        <div class="my-4 modal-table-list-scroll-y">
+          <table id="lista" class="table">
+            <tr>
+              <th>Estudiante</th>
+            </tr>
+            <tr *ngFor="let est of objEstudiantes" (click)="seleccionarEstudiante(est)" data-dismiss="modal">
+              <td>{{est.nombre}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="my-3">
+  <a class="btn btn-primary" routerLink="/usuarios">Regresar</a>
+</div>
+<div class="row">
+  <div class="col-md-7 my-4">
+    <h4>{{titulo}}</h4>
+    <form #form="ngForm" class="card" (ngSubmit)="SubmitForm()">
+      <div class="card-body">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="objUsuario.nombre" #nombre='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="nombre.invalid && nombre.touched" class="text-danger small">
+            <div *ngIf="nombre.errors.required">
+              Nombre requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="objUsuario.email" #email='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="email.invalid && email.touched" class="text-danger small">
+            <div *ngIf="email.errors.required">
+              Correo Electrónico requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" class="form-control" name="password" [(ngModel)]="objUsuario.password" #password='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="password.invalid && password.touched" class="text-danger small">
+            <div *ngIf="password.errors.required">
+              Contraseña requerida
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="tipo">Tipo</label>
+          <select name="tipo" class="form-control" [(ngModel)]="objUsuario.tipo" [disabled]="tipoForm=='ver'">
+            <option value="admin">Administrador</option>
+            <option value="profesor">Profesor</option>
+          </select>
+        </div>
+
+        <div *ngIf="objUsuario.tipo=='profesor'" class="form-group">
+            <label for="profesor">Profesor</label>
+            <select name="profesor" (ngModelChange)="cambiar()" class="form-control" [disabled]="tipoForm=='ver'" [(ngModel)]="objUsuario.profesor"
+              #profesor_i='ngModel'>
+              <option *ngFor="let pro of objProfesores" [ngValue]="pro">
+                {{ pro.nombre }}
+              </option>
+            </select>
+          </div>
+
+        <div>
+          <button class="btn btn-primary" [disabled]="habilitarBoton(!form.valid)">{{nombreBoton}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

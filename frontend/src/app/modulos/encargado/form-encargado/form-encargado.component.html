@@ -1,0 +1,138 @@
+<div class="my-3">
+  <a class="btn btn-primary" routerLink="/encargados">Regresar</a>
+</div>
+<div class="row">
+  <div class="col-md-7 my-4">
+    <h4>{{titulo}}</h4>
+    <form #form="ngForm" class="card" (ngSubmit)="SubmitForm()">
+      <div class="card-body">
+
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" [(ngModel)]="objEncargado.nombre" #nombre='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="nombre.invalid && nombre.touched" class="text-danger small">
+            <div *ngIf="nombre.errors.required">
+              Nombre requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cedula">Cédula</label>
+          <input type="text" class="form-control" name="cedula" [(ngModel)]="objEncargado.cedula" #cedula='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="cedula.invalid && cedula.touched" class="text-danger small">
+            <div *ngIf="cedula.errors.required">
+              Cédula requerida
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono_fijo">Teléfono Fijo</label>
+          <input type="text" class="form-control" name="telefono_fijo" [(ngModel)]="objEncargado.telefono_fijo"
+            #telefono_fijo='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="telefono_fijo.invalid && telefono_fijo.touched" class="text-danger small">
+            <div *ngIf="telefono_fijo.errors.required">
+              Teléfono fijo requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono_movil">Teléfono Móvil</label>
+          <input type="text" class="form-control" name="telefono_movil" [(ngModel)]="objEncargado.telefono_movil"
+            #telefono_movil='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="telefono_movil.invalid && telefono_movil.touched" class="text-danger small">
+            <div *ngIf="telefono_movil.errors.required">
+              Teléfono móvil requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" class="form-control" name="email" [(ngModel)]="objEncargado.email" #email='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="email.invalid && email.touched" class="text-danger small">
+            <div *ngIf="email.errors.required">
+              Correo electrónico requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="estado_civil">Estado Civil</label>
+          <input type="text" class="form-control" name="estado_civil" [(ngModel)]="objEncargado.estado_civil"
+            #estado_civil='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="estado_civil.invalid && estado_civil.touched" class="text-danger small">
+            <div *ngIf="estado_civil.errors.required">
+              Estado Civil requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="oficio">Oficio</label>
+          <input type="text" class="form-control" name="oficio" [(ngModel)]="objEncargado.oficio" #oficio='ngModel'
+            [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="oficio.invalid && oficio.touched" class="text-danger small">
+            <div *ngIf="oficio.errors.required">
+              Oficio requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="lugar_trabajo">Lugar de Trabajo</label>
+          <input type="text" class="form-control" name="lugar_trabajo" [(ngModel)]="objEncargado.lugar_trabajo"
+            #lugar_trabajo='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="lugar_trabajo.invalid && lugar_trabajo.touched" class="text-danger small">
+            <div *ngIf="lugar_trabajo.errors.required">
+              Lugar de trabajo requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefono_trabajo">Teléfono de Trabajo</label>
+          <input type="text" class="form-control" name="telefono_trabajo" [(ngModel)]="objEncargado.telefono_trabajo"
+            #telefono_trabajo='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="telefono_trabajo.invalid && telefono_trabajo.touched" class="text-danger small">
+            <div *ngIf="telefono_trabajo.errors.required">
+              Télefono de trabajo requerido
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="direccion_trabajo">Dirección de Trabajo</label>
+          <input type="text" class="form-control" name="direccion_trabajo" [(ngModel)]="objEncargado.direccion_trabajo"
+            #direccion_trabajo='ngModel' [disabled]="tipoForm=='ver'" required>
+          <div *ngIf="direccion_trabajo.invalid && direccion_trabajo.touched" class="text-danger small">
+            <div *ngIf="direccion_trabajo.errors.required">
+              Dirección de trabajo requerido
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-primary" [disabled]="habilitarBoton(!form.valid)">{{nombreBoton}}</button>
+        </div>
+        
+      </div>
+    </form>
+  </div>
+  <div class="col-md-5 my-4">
+    Estudiantes
+    <table class="table table-sm">
+      <tr>
+        <th>Nombre</th>
+      </tr>
+      <tr *ngFor="let est of objEstudiantes">
+        <td>{{est.nombre}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <h1>Estudiantes</h1>
+    <h2 *ngIf="inactivos"><strong>INACTIVOS</strong></h2>
+    <div class="my-3">
+      <div class="row">
+        <div class="col md-8">
+          <a class="btn btn-primary" routerLink="./crear">Nuevo</a>
+        </div>
+        <div class="col md-4">
+          <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+            placeholder="Buscar Estudiante..." title="Nombre del Estudiante">
+        </div>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="my-4 table-list-scroll-y">
+        <table id="lista" class="table table-sm table-hover">
+          <tr>
+            <th class="thOrdenar">Nombre</th>
+            <th class="thOrdenar">Teléfono</th>
+            <th class="thOrdenar">Instrumento</th>
+            <th></th>
+          </tr>
+          <tr *ngFor="let estudiante of objEstudiantes">
+            <td>{{estudiante.nombre}}</td>
+            <td>{{estudiante.telefono}}</td>
+            <td>{{estudiante.instrumento_principal.nombre}}</td>
+            <td>
+              <a [routerLink]="['./ver', estudiante._id]"><i class="material-icons">search</i></a>
+              <a [routerLink]="['./editar', estudiante._id]"><i class="material-icons">edit</i></a>
+              <a (click)="eliminarEstudiante(estudiante)" style="cursor: pointer;"><i class="material-icons">delete</i></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div>
+      <button id="botonInactivos" class="btn btn-warning" (click)="obtenerEstudiantesInactivos()">Ver Inactivos</button>
+    </div>
+  
+  </div>

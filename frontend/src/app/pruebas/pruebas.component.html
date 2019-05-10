@@ -1,0 +1,30 @@
+<div>
+  <form (ngSubmit)="SubmitForm()">
+    <label for="archivo"> Archivo</label>
+    <input type='file' (change)="fileChanged($event)">
+
+    <button>Cargar Archivo</button>
+  </form>
+</div>
+
+<div>
+  <button (click)="separarCVSEncargado()">SepararCVS Encargado</button>
+  <button (click)="separarCVSEstudiante()">SepararCVS Estudiante</button>
+  <textarea name="" id="" cols="10" rows="1">{{texto}}</textarea>
+</div>
+
+
+<br><br><button (click)="guardarEncargados()" class="btn btn-primary form-control">Guardar Encargados</button>
+<br><br><button (click)="obtenerEncargados()" class="btn btn-primary form-control">OBTENER ENCARGADOS</button>
+<br><br><button (click)="guardarEstudiantes()" class="btn btn-primary form-control">Guardar Estudiantes</button>
+
+<br><br><button (click)="guardarCursoInstrumento()" class="btn btn-primary form-control">Guardar Curso Instrumento</button>
+<br><br><button (click)="guardarCursoLenguaje()" class="btn btn-primary form-control">Guardar Curso Lenguaje</button>
+<br><br><button (click)="guardarCursoOrquesta()" class="btn btn-primary form-control">Guardar Curso Orquesta</button>
+<br><br><button (click)="guardarCursoEnsamble()" class="btn btn-primary form-control">Guardar Curso Ensamble</button>
+<br><br><button (click)="guardarCursoEnsambleComp()" class="btn btn-primary form-control">Guardar Curso Ensamble Complementario</button>
+<br><br><button (click)="obtenerNotas()" class="btn btn-primary form-control">OBTENER NOTAS</button>
+<br><br><button (click)="guardarNotas()" class="btn btn-primary form-control">Guardar Notas</button>
+
+
+<br><br><button (click)="probando()" class="btn btn-primary form-control">Prueba</button>

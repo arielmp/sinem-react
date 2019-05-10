@@ -1,0 +1,70 @@
+<!--navegation-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/']"><img class="logo-navegacion" src="assets/img/sinem.jpg"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+
+            <ul class="navbar-nav" *ngIf="objUsuarioIdentificado.tipo == 'profesor'">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/calificar">Calificación</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">                        
+                        {{objUsuarioIdentificado.nombre}}
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="nav-link" (click)="logout()">Salir</a>
+                    </div>
+                </li>                
+            </ul>
+
+            <ul class="navbar-nav" *ngIf="objUsuarioIdentificado.tipo == 'admin'">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="./estudiantes">Estudiantes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="./instrumentos">Instrumentos</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/encargados">Encargados</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/profesores">Profesores</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/cursos">Cursos</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/calificar">Calificación</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/reportes">Reportes</a>
+                </li>
+                <li>
+                    <a class="nav-link" routerLink="/usuarios">Usuarios</a>
+                </li>
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">                        
+                            {{objUsuarioIdentificado.nombre}}
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="nav-link" (click)="logout()">Salir</a>
+                        </div>
+                    </li>
+            </ul>
+
+            <ul *ngIf="objUsuarioIdentificado.nombre == ''" class="navbar-nav">
+                <li>
+                    <a class="nav-link" routerLink="/login">Ingresar</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

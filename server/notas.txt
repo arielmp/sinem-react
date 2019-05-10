@@ -1,0 +1,169 @@
+REST API
+https://www.youtube.com/watch?v=BRdcRFvuqsE
+https://www.youtube.com/watch?v=1XmwszKUNR8&list=PLSpJkDDmpFZ5rZ5-Aur9WRNsBDSUS-0B9
+
+jwt
+https://www.youtube.com/watch?v=xFxtHcjQrPE
+
+relations
+https://www.youtube.com/watch?v=FVn_wj1jLN0
+
+MONGO DB
+
+.find()
+.findOne()
+$or:[]
+$gt, $lt, $gte, $lte, $ne
+.limit(1)
+.skip(1)
+
+
+db.instrumentos.find()    // seleccionar TODOS
+
+db.instrumentos.find({
+	"nombre":"flauta"
+})                       // seleccionar uno
+
+db.instrumentos.findOne({  // devuelve solo el primero
+	"nombre":"flauta"})                       
+
+db.instrumentos.find(	// varios criterios
+	{
+		"nombre": "flauta",
+		"familia": "vientos"
+	}	
+)
+
+$: comandos especiales de mongo
+
+
+db.estudiantes.find({ // traera todos los que se llamen juan o que apellido mora
+	$or:[
+		{"nombre":"juan"},
+        {"apellido":"mora"}
+	]
+})
+
+
+$gt: grater than, $lt:less than, $gte: mayor o igual, $lte: menor o igual, $ne: not equal
+db.jugadores.find( // buscar los jugadores mayores a 30
+    {"edad": {$gt:30}    //$gt: grater than (mayor que)}
+)
+
+//devolver solo algunos dato
+db.jugadores.find(
+    {"posicion":"centro"}, //criterio de busqueda
+    {"nombre":1,_id:0}      // datos que quiero devolver
+)
+
+/_id: lo trae por defecto. 
+"nombre":1 (significa que trae el nombre)
+"_id":0 (significa que no traiga el id)
+// traer todos los nombre de instrumentos
+db.instrumentos.find(
+    {},
+    {"nombre":1,_id:0}  
+)
+
+db.instrumentos.find(
+    {},
+    {"nombre":1,_id:0}  
+).limit(3);   // solo trae los 3 primeros
+
+db.instrumentos.find(
+    {},
+    {"nombre":1,_id:0}  
+).skip(2)   // brincarse los 2 primeros
+
+db.instrumentos.find().pretty() //devolverlos un poco mas bonito
+
+//eliminar todos los que tengan el nombre vacio
+db.instrumentos.remove(
+    {"nombre":""}  //Criterios
+)
+
+//actualizar documento
+db.instrumentos.update(
+    {"_id": ObjectId("asdasd")},
+    { // nuevo objeto
+        "nombre": "nuevo",
+        "familia": "nueva"
+    }
+)
+
+db.instrumentos.drop()  // borrar toda la coleccion
+
+Agregar varios a la vez
+db.repertorio.insert(
+    [
+        {
+            "nombre":"vals3",
+            "autor":"Lauro"
+        },
+        {
+            "nombre":"Bikina"
+            "autor":"Fuentes",
+            "arreglo":"oliva"
+        }
+    ]
+)
+
+Indexing
+crear un indice para facilitar las busquedas para mongo
+para mejorar rendimiento 
+solo crear indices para las propiedades que se vayan a usar para busqueda (unicas)
+tener muchos indices puede hacer la bd mas lenta
+
+//Explicacion tecnica del query
+db.instrumentos.find().explain("executionStats")
+
+crear indice
+db.users.ensureIndex({"age":1}) 
+mostrar indices
+db.users.getIndexes()
+eliminar indice
+db.users.dropIndex({"age":1})
+
+Aggregation y groups
+agrupacion de acuerdo a algun criterio
+
+crear grupo por el criterio de color de ojos
+db.users.aggregate({
+    $group :{
+        _id: "$eyeColor",
+        total: {$sum: 1}        //sumar el total
+    }
+})
+
+db.usersa.aggregate({
+    $group : {
+        _id : "$gender",
+        total : {$sum : 1}
+    }
+})
+
+$avg: promedio
+los agrupa por genero y saca el promedio de edad
+db.usersa.aggregate({
+    $group : {
+        _id : "$gender",
+        avgAge: {$avg : "$age"}
+    }
+})
+
+$max: trae el mayor
+db.usersa.aggregate({
+    $group : {
+        _id : "$gender",
+        avgAge: {$avg : "$age"},
+        richeast: {$max: "$dinero"}
+    }
+})
+
+FALTAS
+form-curso editar
+  // falta: agregar notas de estudiantes nuevos
+  // falta: revisar si ya existe las notas y no crear nuevas
+
+curso.controller insertar
+//falta: al crear el curso se deben de guardar el id del curso en los estudiantes que lo matricularon

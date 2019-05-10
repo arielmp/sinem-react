@@ -1,0 +1,40 @@
+<div class="container">
+  <h1>Profesores</h1>
+  <div class="my-3">
+    <div class="row">     
+      <div class="col md-8">
+        <a class="btn btn-primary" routerLink="./crear">Nuevo</a>
+      </div>
+      <div class="col md-4">
+        <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+          placeholder="Buscar Profesor..." title="Nombre del Profesor">
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-10 my-4 table-list-scroll-y">
+      <table id="lista" class="table table-sm table-hover">
+        <tr>
+          <th class="thOrdenar">Nombre</th>
+          <th class="thOrdenar">Cedula</th>
+          <th class="thOrdenar">Teléfono Movil</th>
+          <th></th>
+        </tr>
+        <tr *ngFor="let profesor of objProfesores">
+          <td>{{profesor.nombre}}</td>
+          <td>{{profesor.cedula}}</td>
+          <td>{{profesor.telefono_movil}}</td>
+          <td>
+            <a [routerLink]="['./ver', profesor._id]"><i class="material-icons">search</i></a>
+            <a [routerLink]="['./editar', profesor._id]"><i class="material-icons">edit</i></a>
+            <a (click)="eliminarProfesor(profesor)" style="cursor: pointer;"><i class="material-icons">delete</i></a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<div>
+  <button id="botonInactivos" (click)="obtenerProfesoresInactivos()" class="btn btn-warning">Ver Inactivos</button>
+</div>
+</div>

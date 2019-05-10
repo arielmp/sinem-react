@@ -1,0 +1,23 @@
+<div class="container">
+    <div id="tablaEstudiantes" class="row">
+      <div class="col-md-9 my-4">
+        <div>
+          <input class="form-control" type="text" id="filtro" (keyup)="serTabla.filtrarTabla('filtro','lista',0)"
+            placeholder="Buscar Estudiante..." title="Nombre del Estudiante">
+        </div>
+        <div class=" my-4 table-list-scroll-y">
+          <table *ngIf="objEstudiantes" id="lista" class="table table-sm table-hover">
+            <tr>
+              <th>Nombre</th>
+              <th>Instrumento</th>
+              <th></th>
+            </tr>
+            <tr *ngFor="let estudiante of objEstudiantes">
+              <td>{{estudiante.nombre}}</td>
+              <td>{{estudiante.instrumento_principal.nombre}}</td>
+              <td><a routerLink="./{{estudiante._id}}"><i class="material-icons">search</i></a></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>

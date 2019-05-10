@@ -1,0 +1,24 @@
+<div class="container">
+  <div *ngIf="objUsuarioIdentificado.tipo == 'admin'" class="row">
+    <div class="col-md-6">
+      <a class="btn btn-dark m-4 btn-block" routerLink="./estudiantes">Estudiantes</a>
+      <a class="btn btn-dark m-4 btn-block" routerLink="/encargados">Encargados</a>
+      <a class="btn btn-dark m-4 btn-block" routerLink="/cursos">Cursos</a>
+      <a class="btn btn-dark m-4 btn-block" routerLink="/calificar">Calificación</a>
+    </div>
+    <div class="col-md-6">
+      <a class="btn btn-dark m-4 btn-block" routerLink="./instrumentos">Instrumentos</a>
+      <a class="btn btn-dark m-4 btn-block" routerLink="/profesores">Profesores</a>
+      <a class="btn btn-dark m-4 btn-block" routerLink="/reportes">Reportes</a>
+      <a class="btn btn-dark m-4 btn-block" routerLink="/usuarios">Usuarios</a>
+    </div>
+  </div>  
+
+  <div *ngIf="objUsuarioIdentificado.tipo == 'profesor'">
+      <a class="btn btn-dark m-4" routerLink="/calificar">Calificación</a>
+  </div>
+
+  <div *ngIf="objUsuarioIdentificado.nombre == ''">
+      <a class="btn btn-dark m-4" routerLink="/login">Ingresar</a>
+  </div>
+</div>

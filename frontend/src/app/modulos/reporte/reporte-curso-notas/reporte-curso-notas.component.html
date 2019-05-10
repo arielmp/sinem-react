@@ -1,0 +1,38 @@
+<div class="container">
+  <div id="infoCurso">
+    <p>Curso: {{objCurso.nombre}}</p>
+    <p>Profesor: {{objCurso.profesor.nombre}}</p>
+    <p>Tipo: {{objCurso.tipo}}</p>
+    <p>Horario: {{objCurso.horario}}</p>
+
+    <div class="row">
+      <div class="col">
+        <table class="table table-sm table-hover table-striped">
+          <tr>
+            <th class="thOrdenar">Nombre</th>
+            <th class="thOrdenar">Nota I</th>
+            <th class="thOrdenar">Estado I</th>
+            <th class="thOrdenar">Nota II</th>
+            <th class="thOrdenar">Estado II</th>
+            <th class="thOrdenar">Promedio</th>
+            <th class="thOrdenar">Estado Promedio</th>
+          </tr>
+          <tr *ngFor="let nota of objNotas">
+            <td>{{nota.estudiante.nombre}}</td>
+            <td>{{nota.nota_i}}</td>
+            <td> {{formatoNota(nota.nota_i)}}</td>
+            <td>{{nota.nota_ii}}</td>
+            <td>{{formatoNota(nota.nota_ii)}}</td>
+            <td>{{promedioNota(nota.nota_i,nota.nota_ii)}}</td>
+            <td>{{formatoNota(promedioNota(nota.nota_i,nota.nota_ii))}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div id="botones" class="my-4">
+    <button class="btn btn-primary mr-4" (click)="exportar()">Guardar</button>
+    <button class="btn btn-primary" (click)="regresar()">Regresar</button>
+  </div>
+
+</div>
